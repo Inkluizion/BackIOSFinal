@@ -42,6 +42,17 @@ const userController = {
     }
   },
 
+  getAllUsers: async (req, res) => {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (error) {
+      const message = error.message || 'Erreur interne du serveur';
+      const status = error.status || 500;
+      res.status(status).json({ message, status });
+    }
+  },
+  
   
   updateUserDetails: async (req, res) => {
     try {
